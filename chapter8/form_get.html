@@ -18,7 +18,8 @@
             </div>
             <div class="form-check mb-3">
                 <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="checkbox"> Check
+                    <input class="form-check-input" type="hidden" name="checkbox" value="111">
+                    <input class="form-check-input" type="checkbox" name="checkbox" value="on"> Check
                 </label>
             </div>
            <div class="mb3">
@@ -29,7 +30,7 @@
                 <input class="form-check-input" type="radio" name="radio" value="radio3">
                     <label for="radio3">radio3</label>
            </div>
-            <select class="form-control" name="selector" id="">
+            <select class="form-control" name="selector[]" id="" multiple>
                 <option value="select1">select1</option>
                 <option value="select2">select2</option>
                 <option value="select3">select3</option>
