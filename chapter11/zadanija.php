@@ -23,8 +23,8 @@ function sum(){
     
     return $sum;
 }
-$resultSum = sum();
-echo "Сумма чисел от 1 до $iGlobalPositiveNumber = $resultSum <br>";
+$result = sum();
+echo "Сумма чисел от 1 до $iGlobalPositiveNumber = $result <br>";
 
 // ЗАДАНИЕ 3 // 
 
@@ -54,4 +54,4 @@ function recursion(int $iNumber):int{
     return $iNumber + recursion($iNumber - 1);
 }   
 $result = recursion(4);
-echo "Сумма чисел от 1 до 4 = $result\n"; 
+echo "Сумма чисел от 1 до 4 = $result <br>"; 
