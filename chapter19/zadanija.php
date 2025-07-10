@@ -10,6 +10,7 @@ echo $timestamp;
 echo "<br>";
 
 // ЗАДАНИЕ 2 // 
+
     //1)
     $timestamp = 1578652367;
     $dateStr = date('d F l Y H:i:s', $timestamp); //strftime устарела php 8.1
