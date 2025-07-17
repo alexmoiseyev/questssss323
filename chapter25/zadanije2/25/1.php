@@ -1,7 +1,4 @@
 <?php
-
-
-
 define('DIR', __DIR__);
 
 function loadLibrary1($className)
