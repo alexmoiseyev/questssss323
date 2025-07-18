@@ -1,0 +1,12 @@
+[18-Jul-2025 13:45:43 Etc/GMT-3] PHP Fatal error:  Uncaught DivisionByZeroError: Division by zero in C:\OSPanel\home\zadanija.local\chapter26\zadanije1.php:155
+Stack trace:
+#0 {main}
+  thrown in C:\OSPanel\home\zadanija.local\chapter26\zadanije1.php on line 155
+[18-Jul-2025 13:45:43 Etc/GMT-3] PHP Fatal error:  Uncaught DivisionByZeroError: Division by zero in C:\OSPanel\home\zadanija.local\chapter26\zadanije1.php:155
+Stack trace:
+#0 {main}
+  thrown in C:\OSPanel\home\zadanija.local\chapter26\zadanije1.php on line 155
+[18-Jul-2025 13:46:02 Etc/GMT-3] PHP Fatal error:  Uncaught Error: Call to undefined method Polynom::toString1() in C:\OSPanel\home\zadanija.local\chapter26\zadanije1.php:155
+Stack trace:
+#0 {main}
+  thrown in C:\OSPanel\home\zadanija.local\chapter26\zadanije1.php on line 155
