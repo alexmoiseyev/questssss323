@@ -1,11 +1,11 @@
 <?php
 // ЗАДАНИЕ 3 //
 function errorFunc1($err, $errstr) {
-    echo "Обработчик errorFunc1: $errstr<br>";
+    echo "Обработчик " .__FUNCTION__ . ": $errstr<br>";
 }
 
 function errorFunc2($err, $errstr) {
-    echo "Обработчик errorFunc2: $errstr<br>";
+    echo "Обработчик " .__FUNCTION__ . ": $errstr<br>";
 }
 set_error_handler("errorFunc2");
 set_error_handler("errorFunc1");
