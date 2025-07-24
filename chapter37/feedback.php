@@ -4,24 +4,35 @@ $user = 'root';
 $pass = ''; 
 try {
     $dbh = new PDO('mysql:host=mysql-8.0;dbname=chapter37', $user, $pass);
-    $dbh->query("SELECT 1 FROM feedback LIMIT 1");
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dbh->exec("
+        CREATE TABLE IF NOT EXISTS `feedback` (
+        `id` int NOT NULL AUTO_INCREMENT,
+        `review_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `name` varchar(255) NOT NULL,
+        `position` varchar(255) NOT NULL,
+        `email` varchar(255) NOT NULL,
+        `review_text` text NOT NULL,
+        PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;");
+         
+    $stmt = $dbh->query("SELECT COUNT(*) FROM feedback");
+    if ($stmt->fetchColumn() == 0) {
+        $fakeFeedbacks = [
+            ['Алексей', 'CEO', 'alexey24@gmail.com','Hello World!!!'],
+            ['Кирилл', 'CTO', 'kirill@mail.ru','Привет!'],
+            ['Олег', 'Инструктор', 'oleglapkoff@mail.ru','Классно....'],
+            ['Антон', 'HR', 'hr_anton@gmail.com','Ух ты!'],
+            ['Василий332', 'Охранник', 'dembel2007@gmail.com','Зачетно!'],
+        ];
+        foreach ($fakeFeedbacks as $fakeFeedback) {
+            $dbh->prepare("INSERT INTO feedback (name, position, email, review_text) VALUES (?,?,?,?)")
+               ->execute([$fakeFeedback[0], $fakeFeedback[1],$fakeFeedback[2],$fakeFeedback[3]]);
+        }
+    }
+
 } catch (PDOException $e) {
-    if(strpos($e, "SQLSTATE[42S02]")){
-         $dbh->exec("
-            CREATE TABLE `feedback` (
-            `id` int NOT NULL AUTO_INCREMENT,
-            `review_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            `name` varchar(255) NOT NULL,
-            `position` varchar(255) NOT NULL,
-            `email` varchar(255) NOT NULL,
-            `review_text` text NOT NULL,
-            PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;");
-    }
-    else{
-        die("Connection failed: " . $e->getMessage());
-    }
+    die("Connection failed: " . $e->getMessage());
 }
 ?>
 <?php
