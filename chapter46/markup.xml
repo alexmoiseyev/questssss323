@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SaveMessage>
+<SessionID>1398014405</SessionID>
+<guid>4255AAD1-D40F-1EEC-D973-A4D0D7D70E9B</guid>
+<Destination>8(000)000-00-00</Destination>
+<Source>SMS Message</Source>
+<Body>0412043004480020043F0440043E043204350440043E0447043D044B04390020043A043E0434003A00200031003200330034</Body>
+<Encoded>1</Encoded>
+<dton>1</dton>
+<dnpi>1</dnpi>
+<ston>5</ston>
+<snpi>0</snpi>
+<TimeOff>20200622 16:31:58</TimeOff>
+<Priority>0</Priority>
+<NoRequest>0</NoRequest>
+</SaveMessage>
