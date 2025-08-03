@@ -60,6 +60,32 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 'get_feedbacks') {
     exit;
 }
 ?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    header('Content-Type: application/json');
+    
+    try {
+        $name = $_POST['name'] ?? '';
+        $position = $_POST['position'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $text = $_POST['review_text'] ?? '';
+        
+        if (empty($name) || empty($position) || empty($email) || empty($text)) {
+            throw new Exception('Все поля обязательны для заполнения');
+        }
+        
+        $stmt = $dbh->prepare("INSERT INTO feedback (name, position, email, review_text) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$name, $position, $email, $text]);
+        
+        echo json_encode(['success' => true, 'message' => 'Отзыв успешно добавлен']);
+        exit;
+        
+    } catch (Exception $e) {
+        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        exit;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -204,7 +230,6 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == 'get_feedbacks') {
             });
         });
     });
-</script>
 </script>
 </body>
 </html>
