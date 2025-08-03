@@ -35,7 +35,7 @@ try {
 }
 ?>
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
     header('Content-Type: application/json');
     
     try {
@@ -48,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SERVER['HTTP_X_REQUESTED_W
             throw new Exception('Все поля обязательны для заполнения');
         }
         
-        // Вставка в базу данных
         $stmt = $dbh->prepare("INSERT INTO feedback (name, position, email, review_text) VALUES (?, ?, ?, ?)");
         $stmt->execute([$name, $position, $email, $text]);
         
@@ -60,7 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SERVER['HTTP_X_REQUESTED_W
         exit;
     }
 }
-
 ?>
 <?php
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -173,7 +171,6 @@ $feedbacks=$stmt->fetchAll(PDO::FETCH_ASSOC);
                     if (response.success) {
                         $('#formMessage').text('Отзыв успешно отправлен!').addClass('alert-success').removeClass('d-none');
                         $('#feedbackForm')[0].reset();
-                        setTimeout(() => location.reload(), 1500);
                     } else {
                         $('#formMessage').text(response.message || 'Ошибка при отправке отзыва').addClass('alert-danger').removeClass('d-none');
                     }
